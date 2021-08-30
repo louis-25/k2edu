@@ -4,17 +4,17 @@ import cors from 'cors'
 import morgan from 'morgan'
 import helmet from 'helmet'
 // import tweetsRouter from './router/tweets.js'
-// import authRouter from './router/auth.js'
+import authRouter from './router/auth.js'
 
 const app = express();
 
-app.use(express.json());
+app.use(express.json()); // 이거 써줘야 json형식으로 데이터 받을 수 있음
 app.use(helmet());
 app.use(cors());
 app.use(morgan('tiny'));
 
 // app.use('/tweets', tweetsRouter);
-// app.use('/auth', authRouter);
+app.use('/auth', authRouter);
 
 app.get('/', (req, res, next) => {
   console.log('get');
