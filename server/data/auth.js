@@ -1,12 +1,16 @@
 // abcd1234: $2b$12$G9xf8SFq3oTEgdj7ozHQ/uhDOyeQcUEDU8tnOcvpvApuadr3nE5Vm
 let users = [
   {
+    id: 'test',
+    email: 'test@gmail.com',    
+    password: '$2b$10$CmfLf1ivyKI48dgYhm4U1OZ6XqFw.DgKiewOWxKnBZKmz5XGoNKxK',    
+    name: '테스트',
+  },
+  {
     id: '1',
-    username: 'bob',
-    password: '$2b$12$G9xf8SFq3oTEgdj7ozHQ/uhDOyeQcUEDU8tnOcvpvApuadr3nE5Vm',
+    email: 'bob@gmail.com',    
+    password: '$2b$12$G9xf8SFq3oTEgdj7ozHQ/uhDOyeQcUEDU8tnOcvpvApuadr3nE5Vm',    
     name: 'Bob',
-    email: 'bob@gmail.com',
-    url: 'https://widgetwhats.com/app/uploads/2019/11/free-profile-photo-whatsapp-1.png',
   },
 ];
 

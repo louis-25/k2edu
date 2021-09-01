@@ -23,6 +23,7 @@ const validateCredential = [
 const validateSignup = [
   ...validateCredential,
   body('name').notEmpty().withMessage('name is missing'),  
+  body('email').isEmail().normalizeEmail().withMessage('invalid email'),
   validate,
   // body('url')
   //   .isURL()
@@ -33,6 +34,7 @@ router.post('/signup', validateSignup, authController.signup);
 
 router.post('/login', authController.login);
 
+// isAuth는 로그인한 상태만 접근가능
 router.get('/me', isAuth, authController.me);
 
 export default router;

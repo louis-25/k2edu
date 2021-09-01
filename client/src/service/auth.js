@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export default class AuthService {
   constructor(http, tokenStorage) {
     this.http = http;
@@ -19,13 +21,14 @@ export default class AuthService {
     return data;
   }
 
-  async login(username, password) {
+  async login(id, password) {
+    console.log(this.http)
     const data = await this.http.fetch('/auth/login', {
       method: 'POST',
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ id, password }),
     });
     this.tokenStorage.saveToken(data.token);
-    return data;
+    return data;    
   }
 
   async me() {

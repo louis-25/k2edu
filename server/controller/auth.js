@@ -10,6 +10,7 @@ const jwtExpiresSec = config.jwt.expiresInSec;
 const bcryptSaltRounds = config.bcrypt.saltRounds;
 
 export async function signup(req, res) {
+  console.log('req ',req.body)
   const { id, email, password, confirmPassword, name } = req.body;
   const found = await userRepository.findById(id);
   if (found) {
@@ -33,8 +34,8 @@ export async function signup(req, res) {
 
 export async function login(req, res) {
   console.log('req.body ',req.body);
-  const { username, password } = req.body;
-  const user = await userRepository.findByUsername(username);
+  const { id, password } = req.body;
+  const user = await userRepository.findById(id);
   if (!user) {
     return res.status(401).json({ message: 'Invalid user or password' });
   }
@@ -43,10 +44,12 @@ export async function login(req, res) {
     return res.status(401).json({ message: 'Invalid user or password' });
   }
   const token = createJwtToken(user.id);
-  res.status(200).json({ token, username });
+  res.status(200).json({ token, id });
 }
 
 function createJwtToken(id) {
+  //jwtExpiresSec 동안 id의 인증 정보가 유지된다 
+  //-> client에서 localStorage에 저장하여 사용
   return jwt.sign({ id }, jwtSecretKey, { expiresIn: jwtExpiresSec });
 }
 
