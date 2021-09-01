@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { BrowserRouter } from 'react-router-dom'; // 라우터
 
 import AuthService from './service/auth.js';
 import HttpClient from './network/http.js';
@@ -15,7 +16,9 @@ const authService = new AuthService(httpClient, tokenStorage);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App authService={authService}/>
+    <BrowserRouter>
+      <App authService={authService}/>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

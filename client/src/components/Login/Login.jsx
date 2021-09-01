@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import style from './Login.module.css'
-import axios from 'axios';
 
 function Login({authService}) {    
 
