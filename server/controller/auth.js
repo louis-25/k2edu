@@ -2,28 +2,33 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import {} from 'express-async-errors';
 import * as userRepository from '../data/auth.js';
+import {config} from '../config.js';
 
 // TODO: Make it secure!
-const jwtSecretKey = 'F2dN7x8HVzBWaQuEEDnhsvHXRWqAR63z';
-const jwtExpiresInDays = '2d';
-const bcryptSaltRounds = 12;
+const jwtSecretKey = config.jwt.secretKey;
+const jwtExpiresSec = config.jwt.expiresInSec;
+const bcryptSaltRounds = config.bcrypt.saltRounds;
 
 export async function signup(req, res) {
-  const { username, password, name, email, url } = req.body;
-  const found = await userRepository.findByUsername(username);
+  const { id, email, password, confirmPassword, name } = req.body;
+  const found = await userRepository.findById(id);
   if (found) {
-    return res.status(409).json({ message: `${username} already exists` });
+    return res.status(409).json({ message: `${id} 는 이미 사용중 입니다` });
   }
-  const hashed = await bcrypt.hash(password, bcryptSaltRounds);
+  if (password != confirmPassword) {
+    console.log('password ', password)
+    console.log('confirm ',confirmPassword)
+    return res.status(409).json({ message: `비밀번호가 일치하지 않습니다 ` });
+  }
+  const hashed = await bcrypt.hash(password, bcryptSaltRounds); // 비밀번호 암호화
   const userId = await userRepository.createUser({
-    username,
+    id,
+    email,
     password: hashed,
     name,
-    email,
-    url,
   });
-  const token = createJwtToken(userId);
-  res.status(201).json({ token, username });
+  const token = createJwtToken(userId); // jwt토큰 생성 -> client에 저장
+  res.status(201).json({ token, id });
 }
 
 export async function login(req, res) {
@@ -42,7 +47,7 @@ export async function login(req, res) {
 }
 
 function createJwtToken(id) {
-  return jwt.sign({ id }, jwtSecretKey, { expiresIn: jwtExpiresInDays });
+  return jwt.sign({ id }, jwtSecretKey, { expiresIn: jwtExpiresSec });
 }
 
 export async function me(req, res, next) {
