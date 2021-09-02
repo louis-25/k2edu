@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 export default class AuthService {
   constructor(http, tokenStorage) {
     this.http = http;
@@ -14,7 +12,7 @@ export default class AuthService {
         password,
         name,
         email,
-        url,
+        url,        
       }),
     });
     this.tokenStorage.saveToken(data.token);
@@ -28,7 +26,7 @@ export default class AuthService {
       body: JSON.stringify({ id, password }),
     });
     this.tokenStorage.saveToken(data.token);
-    return data;    
+    return data;
   }
 
   async me() {
