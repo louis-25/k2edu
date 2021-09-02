@@ -1,9 +1,12 @@
 import React, { useRef } from 'react';
 import { useHistory } from 'react-router-dom';
-function Login({authService}) {    
+import style from './Login.module.css'
+
+function Login({authService, popup, setPopup}) {    
   const history = useHistory()
   const id = useRef()
   const pw = useRef()
+  const display = '';
 
   const postLogin = async(e) =>{
     e.preventDefault()
@@ -22,9 +25,14 @@ function Login({authService}) {
     })
     
   }
-
+  if(popup == "open") {
+    display = "block"
+  }else if(popup == "close") {
+    display = "none"
+  }
+  
   return (
-    <div>
+    <div className={style.login} style={{display:`${this.display}`}}>
       <form>
         <input type="text" name="username" ref={id} placeholder="id"/><br/>
         <input type="password" name="password" ref={pw} placeholder="pw"/><br/>
