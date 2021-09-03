@@ -12,11 +12,12 @@ function Login({authService, popup, setPopup}) {
     // console.log('id ',id.current.value)
     // console.log('pw ',pw.current.value)
     authService.login(id.current.value, pw.current.value)
-    .then((data)=>{
+    .then((data)=>{ // login 성공
       console.log('data ',data)
       setPopup(false)
+      window.location.replace("/")
     })
-    .catch((e)=>{
+    .catch((e)=>{ // login 실패
       id.current.value = ""
       pw.current.value = ""
       alert(e)
@@ -25,8 +26,8 @@ function Login({authService, popup, setPopup}) {
     
   }    
   
-  const closeLogin = () =>{
-    setPopup(false)
+  const closeLogin = () =>{    
+    setPopup(false)        
   }
 
   return (

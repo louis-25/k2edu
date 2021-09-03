@@ -18,7 +18,7 @@ function App({authService}) {
     <div className="App">
       <Route exact path="/">
         <Header authService={authService} loginState={loginState}></Header>
-          <Main authService={authService} loginState={loginState}></Main>
+        <Main authService={authService} loginState={loginState}></Main>
         <Footer></Footer>
       </Route>      
       <Route exact path="/register">

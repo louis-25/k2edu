@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import Visual from './Visual/Visual';
 
 function Main({authService, loginState}) {
   const history = useHistory()  
@@ -19,7 +20,7 @@ function Main({authService, loginState}) {
 
   return (
     <div>
-      <h1>Main !!!</h1>
+      <Visual></Visual>
       {menu(1)}
     </div>
   );
