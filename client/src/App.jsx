@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import {Route} from 'react-router-dom';
 import './App.css';
 import Main from './components/Main/Main'
+import Register from './components/Register/Register';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 
@@ -19,9 +20,9 @@ function App({authService}) {
         <Header authService={authService} loginState={loginState}></Header>
           <Main authService={authService} loginState={loginState}></Main>
         <Footer></Footer>
-      </Route>
-      <Route exact path="/main">
-        <Main authService={authService}></Main>
+      </Route>      
+      <Route exact path="/register">
+        <Register authService={authService}></Register>
       </Route>
     </div>
   );

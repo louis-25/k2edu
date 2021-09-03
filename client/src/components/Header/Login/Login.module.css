@@ -1,10 +1,28 @@
-.login {
-  top: 100px;
+.login {    
+  top: 5em;    
   left: 50%;
-  width: 400px;
-  height: 400px;  
+  width: 20em;
+  height: 20em;  
   background-color: khaki;
   position: fixed;
-  display: none;
+  margin: auto;
+  transform: translate(-50%, 0);
+  border-radius: 5px;
   z-index: 9999;
+}
+
+.form {
+  margin: 2em auto 0;
+}
+
+.loginBtn {
+  margin-top: 1em;
+}
+
+ul{    
+  padding: 0;
+}
+
+li{  
+  list-style: none;
 }

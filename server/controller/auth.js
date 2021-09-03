@@ -37,11 +37,11 @@ export async function login(req, res) {
   const { id, password } = req.body;
   const user = await userRepository.findById(id);
   if (!user) {
-    return res.status(401).json({ message: 'Invalid user or password' });
+    return res.status(401).json({ message: '아이디 혹은 비밀번호가 틀렸습니다' });
   }
   const isValidPassword = await bcrypt.compare(password, user.password);
   if (!isValidPassword) {
-    return res.status(401).json({ message: 'Invalid user or password' });
+    return res.status(401).json({ message: '아이디 혹은 비밀번호가 틀렸습니다' });
   }
   const token = createJwtToken(user.id);
   res.status(200).json({ token, id });
