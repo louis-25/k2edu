@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import style from './Login.module.css'
+import {Button} from 'react-bootstrap'
 
 function Login({authService, popup, setPopup}) {    
   const history = useHistory()
@@ -37,9 +38,9 @@ function Login({authService, popup, setPopup}) {
       <input type="text" name="id" ref={id} placeholder="id"/>
       <input type="password" name="password" ref={pw} placeholder="password"/>
       <ul>        
-        <li><button type='submit' onClick={postLogin} className={style.loginBtn}>로그인</button></li>
+        <li><Button type='submit' onClick={postLogin} className={style.loginBtn}>로그인</Button></li>
         <li><a href="/register">회원가입</a></li>
-        <li><button onClick={closeLogin}>닫기</button></li>
+        <li><Button className="Red" onClick={closeLogin}>닫기</Button></li>
       </ul>
       </form>
     </div>
