@@ -2,6 +2,9 @@ import React, { useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import style from './Login.module.css'
 import {Button} from 'react-bootstrap'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import classnames from 'classnames'
 
 function Login({authService, popup, setPopup}) {    
   const history = useHistory()
@@ -31,19 +34,29 @@ function Login({authService, popup, setPopup}) {
     setPopup(false)
   }
 
+  const Register = () => {
+    history.push('/register');
+  }
+
   return (
-    <div className={style.login}>
-      <div>로그인창</div>
-      <form className={style.form}>
-      <input type="text" name="id" ref={id} placeholder="id"/>
-      <input type="password" name="password" ref={pw} placeholder="password"/>
+    <>
+    <div className={style.popup_overlay}></div>
+    <div className={style.login}>            
+    <form className={style.form}>
+      <div className={style.title}>
+        <b>로그인창</b>
+      <FontAwesomeIcon onClick={closeLogin} icon={faTimes} className={classnames(style.xbox,"align-self-center")}/>
+      </div>
+      
+      <input className={style.input} type="text" name="id" ref={id} placeholder="아이디"/>
+      <input className={style.input} type="password" name="password" ref={pw} placeholder="비밀번호"/>      
       <ul>
-        <li><Button type='submit' onClick={postLogin} className={style.loginBtn}>로그인</Button></li>
-        <li><a href="/register">회원가입</a></li>
-        <li><Button onClick={closeLogin}>닫기</Button></li>
+        <li><Button type='submit' onClick={postLogin} className={style.Btn}>로그인</Button></li>
+        <li><button type='submit' onClick={Register} className={classnames(style.Btn, style.register)}>회원가입</button></li>        
       </ul>
       </form>
     </div>
+    </>
   );
 }
 

@@ -2,5 +2,10 @@
   display: flex;      
   height: 60px;
   justify-content: space-between;
-  background-color: lightgoldenrodyellow;
+  background-color: lightgoldenrodyellow;  
+  transition: all .2s ease-in-out;
+}
+
+.login {
+  transition: all .2s ease-in-out;
 }

@@ -70,7 +70,7 @@ function Header({ authService, loginState }) {
             <Nav className="">
             {loginBox()}
             {
-              popup && (<Login
+              popup && (<Login className={style.login}
                   authService={authService}
                   popup={popup}
                   setPopup={setPopup}>
