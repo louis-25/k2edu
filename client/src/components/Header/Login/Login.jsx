@@ -28,19 +28,19 @@ function Login({authService, popup, setPopup}) {
   }    
   
   const closeLogin = () =>{    
-    setPopup(false)        
+    setPopup(false)
   }
 
   return (
     <div className={style.login}>
       <div>로그인창</div>
-      <form className={style.form}>      
+      <form className={style.form}>
       <input type="text" name="id" ref={id} placeholder="id"/>
       <input type="password" name="password" ref={pw} placeholder="password"/>
-      <ul>        
+      <ul>
         <li><Button type='submit' onClick={postLogin} className={style.loginBtn}>로그인</Button></li>
         <li><a href="/register">회원가입</a></li>
-        <li><Button className="Red" onClick={closeLogin}>닫기</Button></li>
+        <li><Button onClick={closeLogin}>닫기</Button></li>
       </ul>
       </form>
     </div>

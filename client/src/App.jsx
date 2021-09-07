@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import Main from './components/Main/Main'
-import Register from './components/Register/Register';
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
+import Course from './components/pages/Course/Course'
 
 function App({ authService }) {
   const [loginState, setLogin] = useState('guest')
@@ -15,15 +13,15 @@ function App({ authService }) {
   })
 
   return (
-    <div className="App">
-      <Route exact path="/">
-        <Header authService={authService} loginState={loginState}></Header>
-        <Main authService={authService} loginState={loginState}></Main>        
-        <Footer></Footer>
-      </Route>
-      <Route exact path="/register">
-        <Register authService={authService}></Register>
-      </Route>
+    <div className="App">            
+      <Switch>
+        <Route exact path="/course">        
+          <Course></Course>
+        </Route> 
+        <Route path="/">        
+          <Main authService={authService} loginState={loginState}></Main>                
+        </Route>                                         
+      </Switch>
     </div>
   );
 }

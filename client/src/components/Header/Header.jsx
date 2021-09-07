@@ -1,11 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import style from './Header.module.css'
 import Login from './Login/Login'
 import logo from '../../images/fasoo.png'
 import {Navbar, NavDropdown, Nav, Form, FormControl, Button} from 'react-bootstrap'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 function Header({ authService, loginState }) {
+  const history = useHistory()
   const [popup, setPopup] = useState(false)
+  const [show, setShow] = useState(false) // Navbar hover 파악용
+
+  const showDropdown = (e)=>{
+      setShow(!show);
+  }
+  const hideDropdown = (e) => {
+      setShow(false);
+  }
 
   const Logout = (e) => {    
     authService.logout();
@@ -40,15 +52,22 @@ function Header({ authService, loginState }) {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto mr-5">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
-            <NavDropdown title="메뉴" id="basic-nav-dropdown">
+            <Nav.Link href="/">Home</Nav.Link>
+            <NavDropdown show={show} onMouseEnter={showDropdown} onMouseLeave={hideDropdown} title="교육과정" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+            </NavDropdown>
+            <Nav.Link href="/about">ABOUT</Nav.Link>
+            <NavDropdown title="메뉴" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/course">Course</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
             </NavDropdown>
+            </Nav>
+            <Nav className="">
             {loginBox()}
             {
               popup && (<Login
@@ -56,8 +75,9 @@ function Header({ authService, loginState }) {
                   popup={popup}
                   setPopup={setPopup}>
               </Login>)
-            }      
-          </Nav>          
+            }
+            <FontAwesomeIcon className="align-self-center" icon={faShoppingCart}/>
+            </Nav>
         </Navbar.Collapse>
       </Navbar>
       {/* <div className={style.header}>      
