@@ -2,3 +2,8 @@
   height: 646px;
   background-color: lightcyan;
 }
+
+.card {
+  height: 646px;
+  z-index: 1;
+}

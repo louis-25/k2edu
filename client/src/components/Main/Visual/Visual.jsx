@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 // import 'react-awesome-slider/dist/styles.css';
 // Import Swiper React components
 import Carousel from 'react-material-ui-carousel'
+import classnames from 'classnames'
+import style from './Visual.module.css'
 import {
   Card,
   CardContent,
@@ -61,7 +63,7 @@ function Visual() {
       const media = (
         // <Grid item xs={12 / totalItems} key={item.Name}>
         <CardMedia
-          className="Media"
+          className={classnames(style.card,"Media")}
           image={item.Image}
           title={item.Name}
         >
@@ -85,42 +87,13 @@ function Visual() {
     }
 
     return (
-      // <Card raised className="Banner">
-      //     <Grid container spacing={0} className="BannerGrid">
-      //         {items}
-      //     </Grid>
-      // </Card>
-      <CardMedia 
-        className="Media"
+      <CardMedia
+      className={classnames(style.card,"Media")}
         image={"https://source.unsplash.com/featured/?macbook"}
         title={"iphone"}
       >
         <Typography className="MediaCaption">
-          {"namedasdasdasdasdasdasdsa"}<br/>
-          {"namedasdasdasdasdasdasdsa"}<br/>
-          {"namedasdasdasdasdasdasdsa"}<br/>
-          {"namedasdasdasdasdasdasdsa"}<br/>
-          {"namedasdasdasdasdasdasdsa"}<br/>
-          {"namedasdasdasdasdasdasdsa"}<br/>
-          {"namedasdasdasdasdasdasdsa"}<br/>
-          {"namedasdasdasdasdasdasdsa"}<br/>
-          {"namedasdasdasdasdasdasdsa"}<br/>
-          {"namedasdasdasdasdasdasdsa"}<br/>
-          {"namedasdasdasdasdasdasdsa"}<br/>
-          {"namedasdasdasdasdasdasdsa"}<br/>
-          {"namedasdasdasdasdasdasdsa"}<br/>
-          {"namedasdasdasdasdasdasdsa"}<br/>
-          {"namedasdasdasdasdasdasdsa"}<br/>
-          {"namedasdasdasdasdasdasdsa"}<br/>
-          {"namedasdasdasdasdasdasdsa"}<br/>
-          {"namedasdasdasdasdasdasdsa"}<br/>
-          {"namedasdasdasdasdasdasdsa"}<br/>
-          {"namedasdasdasdasdasdasdsa"}<br/>
-          {"namedasdasdasdasdasdasdsa"}<br/>
-          {"namedasdasdasdasdasdasdsa"}<br/>
-          {"namedasdasdasdasdasdasdsa"}<br/>
-          {"namedasdasdasdasdasdasdsa"}<br/>
-          {"namedasdasdasdasdasdasdsa"}
+          {"namedasdasdasdasdasdasdsa"}<br/>          
         </Typography>
       </CardMedia>
     )
@@ -174,9 +147,7 @@ function Visual() {
     }
   ]
   return (
-    <div style={{ marginTop: "50px", color: "#494949" }}>
-      <h2>Example: eBay&trade; style</h2>
-
+    <div>      
       <Carousel
         className="Example"
         autoPlay={autoPlay}
