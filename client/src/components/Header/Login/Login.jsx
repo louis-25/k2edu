@@ -34,13 +34,14 @@ function Login({authService, popup, setPopup}) {
     setPopup(false)
   }
 
-  const Register = () => {
+  const Register = () => {    
+    setPopup(false)
     history.push('/register');
   }
 
   return (
-    <>
-    <div className={style.popup_overlay}></div>
+    <div>
+    {popup && <div className={style.popup_overlay}></div>}
     <div className={style.login}>            
     <form className={style.form}>
       <div className={style.title}>
@@ -56,7 +57,7 @@ function Login({authService, popup, setPopup}) {
       </ul>
       </form>
     </div>
-    </>
+    </div>
   );
 }
 

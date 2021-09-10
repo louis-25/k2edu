@@ -91,9 +91,8 @@ function Visual() {
       className={classnames(style.card,"Media")}
         image={"https://source.unsplash.com/featured/?macbook"}
         title={"iphone"}
-      >
-        <Typography className="MediaCaption">
-          {"namedasdasdasdasdasdasdsa"}<br/>          
+      >        
+        <Typography className="MediaCaption">                 
         </Typography>
       </CardMedia>
     )
