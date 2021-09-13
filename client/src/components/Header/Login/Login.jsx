@@ -1,15 +1,18 @@
 import React, { useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import style from './Login.module.css'
-import {Button} from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import classnames from 'classnames'
+import parser from 'postcss-selector-parser';
+import postcss from 'postcss'
 
 function Login({authService, popup, setPopup}) {    
   const history = useHistory()
   const id = useRef()
-  const pw = useRef()  
+  const pw = useRef()    
+  const processor = parser();
 
   const postLogin = async(e) =>{
     e.preventDefault()    
@@ -31,7 +34,7 @@ function Login({authService, popup, setPopup}) {
   }    
   
   const closeLogin = () =>{    
-    setPopup(false)
+    setPopup(false)        
   }
 
   const Register = () => {    

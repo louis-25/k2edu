@@ -7,11 +7,13 @@ import {Navbar, NavDropdown, Nav, Form, FormControl, Button} from 'react-bootstr
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faBars } from "@fortawesome/free-solid-svg-icons";
 import classnames from 'classnames'
+import parser from 'postcss-selector-parser'
+import * as postcss from 'postcss'
 
 function Header({ authService, loginState }) {
   const history = useHistory()
   const [popup, setPopup] = useState(false)
-  const [show, setShow] = useState(false) // Navbar hover 파악용
+  const [show, setShow] = useState(false) // Navbar hover 파악용    
 
   const showDropdown = (e)=>{
     console.log('e ',e);
@@ -26,9 +28,9 @@ function Header({ authService, loginState }) {
     window.location.replace("/")
   }
 
-  const openLogin = (e) => {    
-    console.log('login!!!')
-    setPopup(true)
+  const openLogin = (e) => {
+    console.log('login!!!')    
+    setPopup(true)    
   }
 
   function loginBox() {

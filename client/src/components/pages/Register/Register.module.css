@@ -1,0 +1,34 @@
+.inputBox{
+  text-align: left;
+  margin: 1em;
+}
+
+.inputField {
+  display: flex;
+  flex-direction: column;
+  margin: 0 1em 1em 1em;
+}
+
+.input {  
+  padding: 10px;  
+  border: 1px solid rgba(0,0,0,0.20);
+  border-radius: 2px;
+}
+
+.submitBtn {
+  border-color: #FF4949;    
+  color: #FF4949;
+  background-color: #fff;
+  margin: 0 1em 1em 1em;
+  font-size: 11px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100px;
+}
+
+.submitBtn:hover{
+  border-color: #FF4949;    
+}
