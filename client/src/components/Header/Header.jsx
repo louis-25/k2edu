@@ -63,7 +63,7 @@ function Header({ authService, loginState }) {
                 <li className={style.menu__item} onClick={()=>history.push('/course')}>
                     Courses
                 </li>                    
-                <li className={style.menu__item} >
+                <li className={style.menu__item} onClick={()=>history.push('/contact')}>
                     Contact
                 </li>                
             </ul>

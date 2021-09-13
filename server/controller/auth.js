@@ -11,14 +11,14 @@ const bcryptSaltRounds = config.bcrypt.saltRounds;
 
 export async function signup(req, res) {
   console.log('req ',req.body)
-  const { id, email, password, confirmPassword, name } = req.body;
+  const { id, email, password, passwordRe, name } = req.body;
   const found = await userRepository.findById(id);
   if (found) {
     return res.status(409).json({ message: `${id} 는 이미 사용중 입니다` });
   }
-  if (password != confirmPassword) {
+  if (password != passwordRe) {
     console.log('password ', password)
-    console.log('confirm ',confirmPassword)
+    console.log('confirm ',passwordRe)
     return res.status(409).json({ message: `비밀번호가 일치하지 않습니다 ` });
   }
   const hashed = await bcrypt.hash(password, bcryptSaltRounds); // 비밀번호 암호화

@@ -19,7 +19,7 @@ function Title({ title, description, breadscrumbs }) {
             })            
           }
         </div>
-        
+
         <div className={style.title}>{title}</div>
         <div className={style.description}>{description}</div>
       </div>

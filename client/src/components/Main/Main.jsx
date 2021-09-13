@@ -5,6 +5,7 @@ import Register from '../pages/Register/Register';
 import About from '../pages/About/About'
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import Contact from '../pages/Contact/Contact';
 
 function Main({authService, loginState}) {
   const history = useHistory()  
@@ -35,6 +36,9 @@ function Main({authService, loginState}) {
       <Route exact path="/about">
         <About></About>
       </Route>
+      <Route exact path="/contact">
+        <Contact></Contact>
+      </Route>      
       <Footer></Footer>
     </div>
   );

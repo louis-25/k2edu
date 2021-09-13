@@ -1,9 +1,9 @@
 import React from 'react';
 import Title from '../Title/Title'
 
-function About(props) {
-  const title = "About"
-  const description = "About 페이지입니다"
+function Contact(props) {
+  const title = "Contact"
+  const description = "Contact 페이지입니다"
   const breadscrumbs = [
     {
       title:"홈",
@@ -11,7 +11,7 @@ function About(props) {
       next:"/"
     },
     {
-      title:"About",
+      title:"Contact",
       href:undefined,
       next:""
     }
@@ -20,9 +20,9 @@ function About(props) {
   return (
     <div>
       <Title title={title} description={description} breadscrumbs={breadscrumbs}></Title>
-      <p>About</p>
+      <p>Contact</p>
     </div>
   );
 }
 
-export default About;
+export default Contact;
