@@ -222,8 +222,7 @@ header {
 
   .menu_open {
       display: block;      
-      flex-direction: column;
-      text-align: center;
+      flex-direction: column;      
   }  
 
   .menu_close {

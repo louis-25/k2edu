@@ -46,12 +46,6 @@ function Register({authService}) {
     console.log('password ',password.current.value)
     console.log('passwordRe ',passwordRe.current.value)
     console.log('name ',name.current.value)
-
-    console.log(id)
-    console.log(email)
-    console.log(password)
-    console.log(passwordRe)
-    console.log(name)
     
     authService.signup(
       id.current.value, 
