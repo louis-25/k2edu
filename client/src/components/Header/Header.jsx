@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import style from './Header.module.css'
 import Login from './Login/Login'
@@ -14,6 +14,9 @@ function Header({ authService, loginState }) {
   const history = useHistory()
   const [popup, setPopup] = useState(false)
   const [show, setShow] = useState(false) // Navbar hover 파악용    
+  const [ham, setHam] = useState(true)
+  const bars = useRef()
+  const navbar = useRef()
 
   const showDropdown = (e)=>{
     console.log('e ',e);
@@ -45,19 +48,32 @@ function Header({ authService, loginState }) {
     }
   }
 
+  const openBar = () => {
+    // const test = parser.className({value:'.toggle_btn'})    
+    // bars.current.style.transition = `opacity .3s`
+    setHam(!ham)
+    console.log('ham ', ham)
+    // console.log(bars)
+    if(navbar.current.style.height=='300px') {
+      navbar.current.style.height='76px'  
+    }else {
+      navbar.current.style.height='300px'      
+    }
+  }
+
   // useEffect(()=>{
   //   window.location.replace("/")
   // },[loginState])
 
   return (
     <header>      
-      <nav className={style.navbar}>
+      <nav className={style.navbar} ref={navbar}>
         <div className={style.content}>
         <div className={style.logo}>
           <a href="/"><img src={logo} alt="logo"/></a>
         </div>
         <div className={style.menu}>
-            <ul className={classnames(style.menu, style.open)}>                    
+            <ul className={ham ? style.menu_close : style.menu_open}>                    
                 <li className={style.menu__item} onClick={()=>history.push('/')}>Home</li>
                 <li className={style.menu__item} onClick={()=>history.push('/about')}>About</li>                
                 <li className={style.menu__item} onClick={()=>history.push('/course')}>
@@ -77,10 +93,16 @@ function Header({ authService, loginState }) {
               </Login>
               </div>
             }
-        </div>            
-        <button className={style.toggle_btn}>
-          <FontAwesomeIcon className="align-self-center" icon={faBars}/>
-        </button>
+        </div>      
+          <FontAwesomeIcon icon={faBars} className={style.toggle_btn} onClick={openBar}/>
+          {/* <div className={ham ? style.ham_menu : classnames(style.ham_menu, style.open)}>
+            
+          </div> */}
+          {/* <div className={ham ? style.menu_trigger : classnames(style.menu_trigger, style.active)} onClick={openBar} ref={bars}>
+              <span> </ span>
+              <span> </ span>
+              <span> </ span>
+            </div> */}
         </div>
       </nav>
     </header>

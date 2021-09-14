@@ -47,6 +47,11 @@ function Register({authService}) {
     console.log('passwordRe ',passwordRe.current.value)
     console.log('name ',name.current.value)
 
+    console.log(id)
+    console.log(email)
+    console.log(password)
+    console.log(passwordRe)
+    console.log(name)
     
     authService.signup(
       id.current.value, 
@@ -69,7 +74,7 @@ function Register({authService}) {
     <Title title={title} description={description} breadscrumbs={breadscrumbs}></Title>        
     {
     !register ?
-    <div className={style.inputBox}>      
+    <div className={style.inputBox}>
       <div className={style.inputField}>
         <span>아이디</span>
         <input className={style.input} type="text" name="id" ref={id}/>

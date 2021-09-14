@@ -5312,11 +5312,6 @@ fragment-cache@^0.2.1:
   dependencies:
     map-cache "^0.2.2"
 
-framework7-react@^6.3.2:
-  version "6.3.2"
-  resolved "https://registry.npmjs.org/framework7-react/-/framework7-react-6.3.2.tgz"
-  integrity sha512-TldjEqT9F+fg+xZxmJ5vqFkUChookA0BRWH43PR3jR+iqBJk1e+BNgX/WaZv06IcykKKG5bz/pzsgRYproGqJg==
-
 fresh@0.5.2:
   version "0.5.2"
   resolved "https://registry.npmjs.org/fresh/-/fresh-0.5.2.tgz"
