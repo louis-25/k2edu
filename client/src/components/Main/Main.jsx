@@ -21,7 +21,7 @@ function Main({authService, loginState}) {
       case 4:
         return <h1>menu 4</h1>
     }
-  }
+  }  
 
   return (
     <div>

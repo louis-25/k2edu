@@ -5,7 +5,7 @@ import Login from './Login/Login'
 import logo from '../../images/fasoo.png'
 import {Navbar, NavDropdown, Nav, Form, FormControl, Button} from 'react-bootstrap'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart, faBars } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingCart, faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import classnames from 'classnames'
 import parser from 'postcss-selector-parser'
 import * as postcss from 'postcss'
@@ -54,10 +54,10 @@ function Header({ authService, loginState }) {
     setHam(!ham)
     console.log('ham ', ham)
     // console.log(bars)
-    if(navbar.current.style.height=='300px') {
+    if(navbar.current.style.height=='280px') {
       navbar.current.style.height='76px'  
     }else {
-      navbar.current.style.height='300px'      
+      navbar.current.style.height='280px'      
     }
   }
 
@@ -81,28 +81,23 @@ function Header({ authService, loginState }) {
                 </li>                    
                 <li className={style.menu__item} onClick={()=>history.push('/contact')}>
                     Contact
-                </li>                
+                </li>       
+                <li>
+                {loginBox()}
+                {
+                  <div className={popup ? style.login_action : style.login_hidden}>
+                  <Login
+                      authService={authService}
+                      popup={popup}
+                      setPopup={setPopup}>
+                  </Login>
+                  </div>
+                }   
+                </li>      
             </ul>
-            {loginBox()}
-            {
-              <div className={popup ? style.login_action : style.login_hidden}>
-              <Login
-                  authService={authService}
-                  popup={popup}
-                  setPopup={setPopup}>
-              </Login>
-              </div>
-            }
-        </div>      
-          <FontAwesomeIcon icon={faBars} className={style.toggle_btn} onClick={openBar}/>
-          {/* <div className={ham ? style.ham_menu : classnames(style.ham_menu, style.open)}>
             
-          </div> */}
-          {/* <div className={ham ? style.menu_trigger : classnames(style.menu_trigger, style.active)} onClick={openBar} ref={bars}>
-              <span> </ span>
-              <span> </ span>
-              <span> </ span>
-            </div> */}
+        </div>      
+          <FontAwesomeIcon icon={ham?faBars:faTimes} className={popup ? style.toggle_hide : style.toggle_btn} onClick={openBar}/>          
         </div>
       </nav>
     </header>

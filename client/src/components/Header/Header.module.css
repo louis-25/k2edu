@@ -117,6 +117,11 @@ header {
   animation-fill-mode: forwards;  
 }
 
+.menu_close {    
+  display: flex;
+  animation: fade-in .3s;
+}
+
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -139,94 +144,46 @@ header {
 @media screen and (max-width:768px) {
   .toggle_btn {                
     display: block;
+    color: #0040ad;
     cursor: pointer;
     transition: .15s ease-in;
-  }
-
-  /* 메뉴 */
-  .ham_menu {
-    right: 0;
-    /* width: 500px; */
-    height: 100vh;
-    background-color: antiquewhite;
-  }
-
-  .ham_menu.open {
-    right: 70vw
-  }
-
-  .menu_trigger,
-  .menu_trigger span {
-    display : flex;
-    transition : all .4s;
-    box-sizing : border-box;
-  }
-  .menu_trigger {
-    position : relative;
-    width : 30px;
-    height : 23px;
-  }
-
-  .menu_trigger span {
-    position : absolute;
-    left : 0;
-    width : 100%;
-    height : 4px;
-    background-color : #fff;
-    border-radius : 4px;
-  }
-
-  .menu_trigger span:nth-of-type(1) {
-    top : 0;
-  }
-  .menu_trigger span:nth-of-type(2) {        
-    top: 9px;    
-
-  }
-  .menu_trigger span:nth-of-type(3) {
-    bottom : 0;
-  }
-
-  .menu_trigger.active span:nth-of-type(1) {
-    -webkit-transform : translateY(10px) rotate(-45deg);
-    transform : translateY(10px) rotate(-45deg);
-  }
-  .menu_trigger.active span:nth-of-type(2) {
-    opacity : 0;
-  }
-  .menu_trigger.active span:nth-of-type(3) {
-    -webkit-transform : translateY(-10px) rotate(45deg);
-    transform : translateY(-10px) rotate(45deg);
-  }
+  }  
 
   .toggle_btn:hover {
-    transform: scale(1.1);
+    transform: scale(1.1);    
   }
   
+  .toggle_hide {
+    display: none;
+  }
 
   .navbar {
     flex-direction: column;
     align-items: flex-start;
-    background-color: var(--color-blue);
+    /* background-color: var(--color-blue); */
   }
 
   .navbar.navbar--dark {
       padding-top: 10px;
   }
 
-  .menu {      
+  .menu {
       flex-direction: column;
       text-align: center;
-      width: 100%;      
+      width: 100%;
   }
 
   .menu_open {
-      display: block;      
-      flex-direction: column;      
+    display: block;      
+    flex-direction: column;
+    animation: fade-in .5s;
+    margin: auto;                
   }  
 
-  .menu_close {
-    display: none;    
+  .menu_close {    
+    display: none;
   }
+  
+  
   
 }
