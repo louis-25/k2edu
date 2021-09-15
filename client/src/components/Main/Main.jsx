@@ -6,8 +6,9 @@ import About from '../pages/About/About'
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Contact from '../pages/Contact/Contact';
+import NotFound from '../pages/NotFound/NotFound';
 
-function Main({authService, loginState}) {
+function Main({authService, loginState, setLogin}) {
   const history = useHistory()  
 
   function menu(a) {
@@ -25,20 +26,25 @@ function Main({authService, loginState}) {
 
   return (
     <div>
-      <Header authService={authService} loginState={loginState}></Header>
-      <Route exact path="/">
-        <Visual></Visual>
-        {menu(1)}
-      </Route>
-      <Route exact path="/register">
-        <Register authService={authService}></Register>
-      </Route>
-      <Route exact path="/about">
-        <About></About>
-      </Route>
-      <Route exact path="/contact">
-        <Contact></Contact>
-      </Route>      
+      <Header authService={authService} loginState={loginState} setLogin={setLogin}></Header>
+        <Switch>
+          <Route exact path="/">
+            <Visual></Visual>
+            {menu(1)}
+          </Route>
+          <Route exact path="/register">
+            <Register authService={authService}></Register>
+          </Route>
+          <Route exact path="/about">
+            <About></About>
+          </Route>
+          <Route exact path="/contact">
+            <Contact></Contact>
+          </Route>      
+          <Route path="*">
+              <NotFound></NotFound>
+          </Route>
+        </Switch>
       <Footer></Footer>
     </div>
   );

@@ -94,6 +94,10 @@ header {
   display: none;
 }
 
+.toggle_hide {
+  display: none;
+}
+
 .hidden {
   display: none;
   opacity: 0;

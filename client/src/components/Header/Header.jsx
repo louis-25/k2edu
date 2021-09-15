@@ -10,7 +10,7 @@ import classnames from 'classnames'
 import parser from 'postcss-selector-parser'
 import * as postcss from 'postcss'
 
-function Header({ authService, loginState }) {
+function Header({ authService, loginState, setLogin }) {
   const history = useHistory()
   const [popup, setPopup] = useState(false)
   const [show, setShow] = useState(false) // Navbar hover 파악용    
@@ -89,7 +89,9 @@ function Header({ authService, loginState }) {
                   <Login
                       authService={authService}
                       popup={popup}
-                      setPopup={setPopup}>
+                      setPopup={setPopup}
+                      setLogin={setLogin}
+                      >
                   </Login>
                   </div>
                 }   

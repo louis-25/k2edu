@@ -8,7 +8,7 @@ import classnames from 'classnames'
 import parser from 'postcss-selector-parser';
 import postcss from 'postcss'
 
-function Login({authService, popup, setPopup}) {    
+function Login({authService, popup, setPopup, setLogin}) {    
   const history = useHistory()
   const id = useRef()
   const pw = useRef()    
@@ -22,6 +22,7 @@ function Login({authService, popup, setPopup}) {
     .then((data)=>{ // login 성공
       console.log('data ',data)
       setPopup(false)
+      setLogin('member')
       window.location.replace("/")
     })
     .catch((e)=>{ // login 실패
