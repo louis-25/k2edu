@@ -14,6 +14,10 @@ function Login({authService, popup, setPopup, setLogin}) {
   const pw = useRef()    
   const processor = parser();
 
+  function authTest() {
+    return authService.me()
+  }
+
   const postLogin = async(e) =>{
     e.preventDefault()    
     // console.log('id ',id.current.value)
@@ -23,7 +27,7 @@ function Login({authService, popup, setPopup, setLogin}) {
       console.log('data ',data)
       setPopup(false)
       setLogin('member')
-      window.location.replace("/")
+      window.location.replace("/")      
     })
     .catch((e)=>{ // login 실패
       id.current.value = ""
@@ -46,7 +50,7 @@ function Login({authService, popup, setPopup, setLogin}) {
   return (
     <div>
     {popup && <div className={style.popup_overlay}></div>}
-    <div className={style.login}>            
+    <div className={style.login}>
     <form className={style.form}>
       <div className={style.title}>
         <b>로그인창</b>

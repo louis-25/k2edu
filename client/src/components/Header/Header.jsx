@@ -27,7 +27,8 @@ function Header({ authService, loginState, setLogin }) {
   }
 
   const Logout = (e) => {    
-    authService.logout();
+    authService.logout();    
+    setLogin('guest')
     window.location.replace("/")
   }
 
@@ -41,8 +42,8 @@ function Header({ authService, loginState, setLogin }) {
       case "guest":
         return <Nav.Link onClick={openLogin}>Login</Nav.Link>
       case "member":
-        return <>
-          <h1>{authService.tokenStorage.getId()}님 환영합니다</h1>
+        return <>          
+          <div>{authService.tokenStorage.getId()}님 환영합니다</div>
           <button onClick={Logout}>Logout</button>
         </>
     }
@@ -62,8 +63,8 @@ function Header({ authService, loginState, setLogin }) {
   }
 
   // useEffect(()=>{
-  //   window.location.replace("/")
-  // },[loginState])
+  //   console.log('test')
+  // },[history])
 
   return (
     <header>      
