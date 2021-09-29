@@ -1,5 +1,6 @@
 import React from 'react';
 import Title from '../Title/Title'
+import style from './Contact.module.css'
 
 function Contact(props) {
   const title = "Contact"
@@ -18,7 +19,7 @@ function Contact(props) {
   ]
 
   return (
-    <div>
+    <div className={style.contact}>
       <Title title={title} description={description} breadscrumbs={breadscrumbs}></Title>
       <p>Contact</p>
     </div>

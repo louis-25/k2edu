@@ -23,6 +23,20 @@ header {
   box-sizing: border-box;
 }
 
+.hover_menu{
+  position: relative;
+  z-index: 9999;
+}
+
+.member {
+  display: flex;
+  flex-direction: column;
+}
+
+.member_menu:hover {
+  cursor: pointer;
+}
+
 .navbar { 
   position: sticky;   
   height: 76px;
@@ -171,11 +185,11 @@ header {
       padding-top: 10px;
   }
 
-  .menu {
+  .menu {    
       flex-direction: column;
       text-align: center;
       width: 100%;
-  }
+  }  
 
   .menu_open {
     display: block;      

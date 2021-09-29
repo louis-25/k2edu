@@ -14,7 +14,8 @@ function Header({ authService, loginState, setLogin }) {
   const history = useHistory()
   const [popup, setPopup] = useState(false)
   const [show, setShow] = useState(false) // Navbar hover 파악용    
-  const [ham, setHam] = useState(true)
+  const [ham, setHam] = useState(false)
+  const [hover, setHover] = useState(false)
   const bars = useRef()
   const navbar = useRef()
 
@@ -37,14 +38,28 @@ function Header({ authService, loginState, setLogin }) {
     setPopup(true)    
   }
 
+  const onMouseEnterHandler = (e) => {
+    setHover(true)
+    console.log(e)
+    console.log('mouse enter')
+  }
+
+  const onMouseLeaveHandler = (e) => {
+    setHover(false)
+    console.log(e)
+    console.log('mouse leave')
+  }
+
   function loginBox() {
     switch (loginState) {
-      case "guest":
-        return <Nav.Link onClick={openLogin}>Login</Nav.Link>
       case "member":
-        return <>          
-          <div>{authService.tokenStorage.getId()}님 환영합니다</div>
-          <button onClick={Logout}>Logout</button>
+        return <Nav.Link onClick={openLogin}>Login</Nav.Link>
+      case "guest":
+        return <>
+          <div className={style.member}>
+            <span className={style.member_menu} onMouseEnter={onMouseEnterHandler} onMouseLeave={onMouseLeaveHandler}>{authService.tokenStorage.getId()}님 환영합니다</span>
+            {hover && <span onClick={Logout}>Logout</span>}
+          </div>
         </>
     }
   }
@@ -58,15 +73,18 @@ function Header({ authService, loginState, setLogin }) {
     if(navbar.current.style.height=='280px') {
       navbar.current.style.height='76px'  
     }else {
-      navbar.current.style.height='280px'      
+      navbar.current.style.height='280px'
     }
   }
 
-  // useEffect(()=>{
-  //   console.log('test')
-  // },[history])
+  // function hoverMenu() {
+  //   return (
+      
+  //   )
+  // }
 
   return (
+    <>
     <header>      
       <nav className={style.navbar} ref={navbar}>
         <div className={style.content}>
@@ -74,7 +92,7 @@ function Header({ authService, loginState, setLogin }) {
           <a href="/"><img src={logo} alt="logo"/></a>
         </div>
         <div className={style.menu}>
-            <ul className={ham ? style.menu_close : style.menu_open}>                    
+            <ul className={ham ? style.menu_open : style.menu_close}>                    
                 <li className={style.menu__item} onClick={()=>history.push('/')}>Home</li>
                 <li className={style.menu__item} onClick={()=>history.push('/about')}>About</li>                
                 <li className={style.menu__item} onClick={()=>history.push('/course')}>
@@ -100,10 +118,12 @@ function Header({ authService, loginState, setLogin }) {
             </ul>
             
         </div>      
-          <FontAwesomeIcon icon={ham?faBars:faTimes} className={popup ? style.toggle_hide : style.toggle_btn} onClick={openBar}/>          
+          <FontAwesomeIcon icon={ham ? faTimes : faBars} className={popup ? style.toggle_hide : style.toggle_btn} onClick={openBar}/>          
         </div>
-      </nav>
-    </header>
+      </nav>           
+    </header>    
+    {/* {hover && <div className={style.hover_menu}>hello</div>} */}
+    </>
   );
 }
 

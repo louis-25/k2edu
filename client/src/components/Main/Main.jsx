@@ -8,6 +8,7 @@ import Footer from '../Footer/Footer';
 import Contact from '../pages/Contact/Contact';
 import NotFound from '../pages/NotFound/NotFound';
 
+
 function Main({authService, loginState, setLogin}) {
   const history = useHistory()  
 
@@ -44,8 +45,8 @@ function Main({authService, loginState, setLogin}) {
           <Route path="*">
               <NotFound></NotFound>
           </Route>
-        </Switch>
-      <Footer></Footer>
+        </Switch>            
+      <Footer></Footer>            
     </div>
   );
 }
