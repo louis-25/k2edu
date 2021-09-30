@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import style from './Login.module.css'
 import { Button } from 'react-bootstrap'
@@ -12,13 +12,13 @@ function Login({authService, popup, setPopup, setLogin}) {
   const history = useHistory()
   const id = useRef()
   const pw = useRef()    
-  const processor = parser();
+  // const processor = parser();
 
-  function authTest() {
-    return authService.me()
-  }
+  // function authTest() {
+  //   return authService.me()
+  // }
 
-  const postLogin = async(e) =>{
+  const postLogin = useMemo((e) =>{
     e.preventDefault()    
     // console.log('id ',id.current.value)
     // console.log('pw ',pw.current.value)
@@ -36,7 +36,7 @@ function Login({authService, popup, setPopup, setLogin}) {
       // console.log('error ',e)
     })
     
-  }    
+  })
   
   const closeLogin = () =>{    
     setPopup(false)        

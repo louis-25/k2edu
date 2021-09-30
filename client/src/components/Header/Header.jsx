@@ -16,6 +16,7 @@ function Header({ authService, loginState, setLogin }) {
   const [show, setShow] = useState(false) // Navbar hover 파악용    
   const [ham, setHam] = useState(false)
   const [hover, setHover] = useState(false)
+  const [toggle, setToggle] = useState(false)
   const bars = useRef()
   const navbar = useRef()
 
@@ -52,13 +53,14 @@ function Header({ authService, loginState, setLogin }) {
 
   function loginBox() {
     switch (loginState) {
-      case "member":
-        return <Nav.Link onClick={openLogin}>Login</Nav.Link>
       case "guest":
+        return <li className={style.menu__item} onClick={openLogin}>Login</li>
+      case "member":
         return <>
           <div className={style.member}>
-            <span className={style.member_menu} onMouseEnter={onMouseEnterHandler} onMouseLeave={onMouseLeaveHandler}>{authService.tokenStorage.getId()}님 환영합니다</span>
-            {hover && <span onClick={Logout}>Logout</span>}
+            <span onClick={setToggle(!toggle)} className={style.member_menu} onMouseEnter={onMouseEnterHandler} onMouseLeave={onMouseLeaveHandler}>{authService.tokenStorage.getId()}님 환영합니다
+            {toggle && <div onClick={Logout, setToggle(!toggle)}>Logout</div>}
+            </span>
           </div>
         </>
     }
@@ -84,7 +86,7 @@ function Header({ authService, loginState, setLogin }) {
   // }
 
   return (
-    <>
+    <div className={style.header_container}>
     <header>      
       <nav className={style.navbar} ref={navbar}>
         <div className={style.content}>
@@ -100,9 +102,8 @@ function Header({ authService, loginState, setLogin }) {
                 </li>                    
                 <li className={style.menu__item} onClick={()=>history.push('/contact')}>
                     Contact
-                </li>       
-                <li>
-                {loginBox()}
+                </li>                       
+                {loginBox()}                
                 {
                   <div className={popup ? style.login_action : style.login_hidden}>
                   <Login
@@ -113,17 +114,15 @@ function Header({ authService, loginState, setLogin }) {
                       >
                   </Login>
                   </div>
-                }   
-                </li>      
-            </ul>
-            
-        </div>      
+                }
+            </ul>            
+        </div>             
           <FontAwesomeIcon icon={ham ? faTimes : faBars} className={popup ? style.toggle_hide : style.toggle_btn} onClick={openBar}/>          
         </div>
       </nav>           
-    </header>    
-    {/* {hover && <div className={style.hover_menu}>hello</div>} */}
-    </>
+    </header>
+    <span className={classnames(hover ? style.hover_menu_open : style.hover_menu_hide)}>hello</span>
+    </div>
   );
 }
 

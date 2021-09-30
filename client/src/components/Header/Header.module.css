@@ -21,11 +21,28 @@
 header {
   border-bottom: 1px solid rgba(0,0,0,.08);
   box-sizing: border-box;
+  z-index: 9999;
 }
 
 .hover_menu{
   position: relative;
-  z-index: 9999;
+  background-color: tomato;    
+  top: -9999;
+  z-index: 20;
+  height: 0;
+}
+
+.hover_menu_open {
+  height: 20px;  
+  top: 20px;
+  position: absolute;
+  background-color: tomato;  
+}
+
+.hover_menu_hide {  
+  height: 0;
+  top: -20px;
+  display: none;
 }
 
 .member {
@@ -201,6 +218,8 @@ header {
   .menu_close {    
     display: none;
   }
+
+
   
   
   
