@@ -16,6 +16,7 @@ function Header({ authService, loginState, setLogin }) {
   const [show, setShow] = useState(false) // Navbar hover 파악용    
   const [ham, setHam] = useState(false)
   const [hover, setHover] = useState(false)
+  const [menuHover, setMenuHover] = useState(false)
   const [toggle, setToggle] = useState(false)
   const bars = useRef()
   const navbar = useRef()
@@ -39,10 +40,9 @@ function Header({ authService, loginState, setLogin }) {
     setPopup(true)    
   }
 
-  const onMouseEnterHandler = (e) => {
-    setHover(true)
-    console.log(e)
-    console.log('mouse enter')
+  function onMouseEnterHandler(menu) {
+    setHover(menu)
+    console.log('menu ', menu)
   }
 
   const onMouseLeaveHandler = (e) => {
@@ -53,13 +53,13 @@ function Header({ authService, loginState, setLogin }) {
 
   function loginBox() {
     switch (loginState) {
-      case "guest":
-        return <li className={style.menu__item} onClick={openLogin}>Login</li>
       case "member":
+        return <li className={style.menu__item} onClick={openLogin}>Login</li>
+      case "guest":
         return <>
-          <div className={style.member}>
-            <span onClick={setToggle(!toggle)} className={style.member_menu} onMouseEnter={onMouseEnterHandler} onMouseLeave={onMouseLeaveHandler}>{authService.tokenStorage.getId()}님 환영합니다
-            {toggle && <div onClick={Logout, setToggle(!toggle)}>Logout</div>}
+          <div className={style.menu__item}>
+            <span onClick={()=>setToggle(!toggle)} className={style.member_menu}>{authService.tokenStorage.getId()}님 환영합니다
+            {toggle && <div onClick={Logout}>Logout</div>}
             </span>
           </div>
         </>
@@ -79,31 +79,41 @@ function Header({ authService, loginState, setLogin }) {
     }
   }
 
-  // function hoverMenu() {
-  //   return (
-      
-  //   )
-  // }
+  function goToSubMenu(submenu){
+    history.push(submenu)
+  }
 
   return (
-    <div className={style.header_container}>
-    <header>      
+    <header>
       <nav className={style.navbar} ref={navbar}>
-        <div className={style.content}>
+        {/* <div className={style.content}> */}
         <div className={style.logo}>
           <a href="/"><img src={logo} alt="logo"/></a>
         </div>
-        <div className={style.menu}>
+        <div className={style.menu} onMouseLeave={onMouseLeaveHandler}>
             <ul className={ham ? style.menu_open : style.menu_close}>                    
                 <li className={style.menu__item} onClick={()=>history.push('/')}>Home</li>
-                <li className={style.menu__item} onClick={()=>history.push('/about')}>About</li>                
-                <li className={style.menu__item} onClick={()=>history.push('/course')}>
-                    Courses
-                </li>                    
+                <li>
+                  <div className={style.menu__item} onClick={()=>history.push('/about')} onMouseEnter={()=>onMouseEnterHandler('about')}>
+                    About <i className='fas fa-caret-down' />                 
+                  </div>                    
+                  <div className={hover=='about' ? style.hover_menu_open : style.hover_menu_hide}>
+                    <div onClick={(e)=>{e.stopPropagation(); goToSubMenu('/about1')}} className={classnames(style.sub__item)}>about1</div>
+                    <div onClick={(e)=>{e.stopPropagation(); goToSubMenu('/about2')}} className={classnames(style.sub__item)}>about2</div>
+                  </div>
+                </li>
+                <li>
+                  <div className={style.menu__item} onClick={(e)=>{history.push('/course')}} onMouseEnter={()=>onMouseEnterHandler('course')}>
+                      Courses <i className='fas fa-caret-down' />
+                  </div>
+                    <div className={hover=='course' ? style.hover_menu_open : style.hover_menu_hide}>
+                    <div onClick={(e)=>{e.stopPropagation(); goToSubMenu('/course1')}} className={classnames(style.sub__item)}>course1</div>
+                  </div>
+                </li>
                 <li className={style.menu__item} onClick={()=>history.push('/contact')}>
-                    Contact
-                </li>                       
-                {loginBox()}                
+                    Contact                                                    
+                </li>
+                {loginBox()}
                 {
                   <div className={popup ? style.login_action : style.login_hidden}>
                   <Login
@@ -115,14 +125,12 @@ function Header({ authService, loginState, setLogin }) {
                   </Login>
                   </div>
                 }
-            </ul>            
-        </div>             
-          <FontAwesomeIcon icon={ham ? faTimes : faBars} className={popup ? style.toggle_hide : style.toggle_btn} onClick={openBar}/>          
+            </ul>
         </div>
-      </nav>           
+          <FontAwesomeIcon icon={ham ? faTimes : faBars} className={popup ? style.toggle_hide : style.toggle_btn} onClick={openBar}/>          
+        {/* </div> */}
+      </nav>
     </header>
-    <span className={classnames(hover ? style.hover_menu_open : style.hover_menu_hide)}>hello</span>
-    </div>
   );
 }
 

@@ -18,7 +18,7 @@ function Login({authService, popup, setPopup, setLogin}) {
   //   return authService.me()
   // }
 
-  const postLogin = useMemo((e) =>{
+  const postLogin = (e) =>{
     e.preventDefault()    
     // console.log('id ',id.current.value)
     // console.log('pw ',pw.current.value)
@@ -26,17 +26,18 @@ function Login({authService, popup, setPopup, setLogin}) {
     .then((data)=>{ // login 성공
       console.log('data ',data)
       setPopup(false)
-      setLogin('member')
+      // setLogin('member')
       window.location.replace("/")      
     })
     .catch((e)=>{ // login 실패
+      console.log('error ',e)
       id.current.value = ""
       pw.current.value = ""
       alert(e)
-      // console.log('error ',e)
+      
     })
     
-  })
+  }
   
   const closeLogin = () =>{    
     setPopup(false)        
