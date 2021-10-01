@@ -12,22 +12,13 @@ import * as postcss from 'postcss'
 
 function Header({ authService, loginState, setLogin }) {
   const history = useHistory()
-  const [popup, setPopup] = useState(false)
-  const [show, setShow] = useState(false) // Navbar hover 파악용    
+  const [popup, setPopup] = useState(false)     
   const [ham, setHam] = useState(false)
-  const [hover, setHover] = useState(false)
+  const [dropdown, setDropdown] = useState(false)
   const [menuHover, setMenuHover] = useState(false)
   const [toggle, setToggle] = useState(false)
   const bars = useRef()
-  const navbar = useRef()
-
-  const showDropdown = (e)=>{
-    console.log('e ',e);
-      setShow(!show);
-  }
-  const hideDropdown = (e) => {
-      setShow(false);
-  }
+  const navbar = useRef()  
 
   const Logout = (e) => {    
     authService.logout();    
@@ -41,21 +32,21 @@ function Header({ authService, loginState, setLogin }) {
   }
 
   function onMouseEnterHandler(menu) {
-    setHover(menu)
+    setDropdown(menu)
     console.log('menu ', menu)
   }
 
   const onMouseLeaveHandler = (e) => {
-    setHover(false)
+    setDropdown(false)
     console.log(e)
     console.log('mouse leave')
   }
 
   function loginBox() {
     switch (loginState) {
-      case "member":
-        return <li className={style.menu__item} onClick={openLogin}>Login</li>
       case "guest":
+        return <li className={style.menu__item} onClick={openLogin}>Login</li>
+      case "member":
         return <>
           <div className={style.menu__item}>
             <span onClick={()=>setToggle(!toggle)} className={style.member_menu}>{authService.tokenStorage.getId()}님 환영합니다
@@ -97,7 +88,7 @@ function Header({ authService, loginState, setLogin }) {
                   <div className={style.menu__item} onClick={()=>history.push('/about')} onMouseEnter={()=>onMouseEnterHandler('about')}>
                     About <i className='fas fa-caret-down' />                 
                   </div>                    
-                  <div className={hover=='about' ? style.hover_menu_open : style.hover_menu_hide}>
+                  <div className={dropdown=='about' ? style.hover_menu_open : style.hover_menu_hide}>
                     <div onClick={(e)=>{e.stopPropagation(); goToSubMenu('/about1')}} className={classnames(style.sub__item)}>about1</div>
                     <div onClick={(e)=>{e.stopPropagation(); goToSubMenu('/about2')}} className={classnames(style.sub__item)}>about2</div>
                   </div>
@@ -106,12 +97,12 @@ function Header({ authService, loginState, setLogin }) {
                   <div className={style.menu__item} onClick={(e)=>{history.push('/course')}} onMouseEnter={()=>onMouseEnterHandler('course')}>
                       Courses <i className='fas fa-caret-down' />
                   </div>
-                    <div className={hover=='course' ? style.hover_menu_open : style.hover_menu_hide}>
+                    <div className={dropdown=='course' ? style.hover_menu_open : style.hover_menu_hide}>
                     <div onClick={(e)=>{e.stopPropagation(); goToSubMenu('/course1')}} className={classnames(style.sub__item)}>course1</div>
                   </div>
                 </li>
                 <li className={style.menu__item} onClick={()=>history.push('/contact')}>
-                    Contact                                                    
+                    Contact
                 </li>
                 {loginBox()}
                 {
@@ -127,7 +118,7 @@ function Header({ authService, loginState, setLogin }) {
                 }
             </ul>
         </div>
-          <FontAwesomeIcon icon={ham ? faTimes : faBars} className={popup ? style.toggle_hide : style.toggle_btn} onClick={openBar}/>          
+          <FontAwesomeIcon icon={ham ? faTimes : faBars} className={popup ? style.toggle_hide : style.toggle_btn} onClick={openBar}/>
         {/* </div> */}
       </nav>
     </header>

@@ -50,7 +50,7 @@ function Login({authService, popup, setPopup, setLogin}) {
 
   return (
     <div>
-    {popup && <div className={style.popup_overlay}></div>}
+    {popup && <div onClick={()=>setPopup(!popup)} className={style.popup_overlay}></div>}
     <div className={style.login}>
     <form className={style.form}>
       <div className={style.title}>
