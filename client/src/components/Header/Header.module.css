@@ -23,6 +23,16 @@ header {
   box-sizing: border-box;    
 }
 
+.drawer {
+  position: absolute;
+  right: 0;
+  height: 100vh;
+  width: 0px;
+  z-index: 9999;
+  background-color: tomato;
+  transition: all var(--animation-duration) ease-in-out;   
+}
+
 .navbar { 
   position: sticky;   
   display: flex;
@@ -198,24 +208,54 @@ header {
   }
 }
 
-@media screen and (max-width:768px) {
-  .menu {
+@media screen and (max-width:768px) {  
+  .drawer {
     position: absolute;
+    right: 0;
+    height: 100vh;
+    width: 0px;
+    z-index: 10000;
+    background-color: var(--color-dark-grey);
+    transition: all var(--animation-duration) ease-in-out;   
+  }
+
+  .drawerIcon{    
+    width: 0px;    
+    text-align: center;
+    float: right;    
+    transition: all var(--animation-duration) ease-in-out;
+  }
+  
+  .menu {
+    display: none;
+    /* position: absolute;
+    left: 0;
+    margin: 0; */
+    /* width: 200px; */
   }
   
   .menu ul {
     margin-top: 30px;
-  }
+  }  
   
+  .hover_menu_open {
+    padding: 10px;
+    /* width: 100px; */
+    margin-top: 0px;
+    /* margin-left: -10px; */
+    position: relative;
+    background-color: tomato;          
+  }
+
   .toggle_btn {                
     display: block;
     color: #0040ad;
     cursor: pointer;
-    transition: .15s ease-in;
-  }  
+    transition: all var(--animation-duration) ease-in-out;
+  }
 
   .toggle_btn:hover {
-    transform: scale(1.1);    
+    transform: scale(1.1);
   }
   
   .toggle_hide {
@@ -235,14 +275,15 @@ header {
   .menu {    
       flex-direction: column;
       text-align: center;
-      width: 100%;
+      width: 100%;      
   }  
 
   .menu_open {
     display: block;      
     flex-direction: column;
     animation: fade-in .5s;
-    margin: auto;                
+    margin: auto; 
+    z-index: 99999;               
   }  
 
   .menu_close {    

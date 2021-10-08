@@ -40,7 +40,7 @@ function App({ authService }) {
         alert('로그인 시간 만료')
         window.location.replace("/")
       })
-    },3000)
+    },20000)
   }
 
   function stopInterval() {
@@ -63,13 +63,13 @@ function App({ authService }) {
   }
 
   return (
-    <div className="App">            
+    <div className="App">
     {/* <button onClick={test}>test</button> */}
       <Switch>
-        <Route exact path="/course">        
+        <Route exact path="/course">
           <Course authService={authService} loginState={loginState} token={token}></Course>
-        </Route> 
-        <Route path="/">        
+        </Route>
+        <Route path="/">
           <Main authService={authService} loginState={loginState} token={token} setLogin={setLogin}></Main>                
         </Route>
       </Switch>

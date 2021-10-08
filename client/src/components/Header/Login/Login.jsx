@@ -8,7 +8,7 @@ import classnames from 'classnames'
 import parser from 'postcss-selector-parser';
 import postcss from 'postcss'
 
-function Login({authService, popup, setPopup, setLogin}) {    
+function Login({authService, popup, setPopup, setLogin, openBar}) {    
   const history = useHistory()
   const id = useRef()
   const pw = useRef()    
@@ -40,19 +40,21 @@ function Login({authService, popup, setPopup, setLogin}) {
   }
   
   const closeLogin = () =>{    
-    setPopup(false)        
+    setPopup(false)     
+    // openBar()
   }
 
   const Register = () => {    
     setPopup(false)
+    openBar()
     history.push('/register');
   }
 
   return (
     <div>
     {popup && <div onClick={()=>setPopup(!popup)} className={style.popup_overlay}></div>}
-    <div className={style.login}>
-    <form className={style.form}>
+    <div className={classnames(style.login, style.form)}>
+    {/* <form className={style.form}> */}
       <div className={style.title}>
         <b>로그인창</b>
       <FontAwesomeIcon onClick={closeLogin} icon={faTimes} className={classnames(style.xbox,"align-self-center")}/>
@@ -64,7 +66,7 @@ function Login({authService, popup, setPopup, setLogin}) {
         <li><Button type='submit' onClick={postLogin} className={style.Btn}>로그인</Button></li>
         <li><button type='submit' onClick={Register} className={classnames(style.Btn, style.register)}>회원가입</button></li>        
       </ul>
-      </form>
+      {/* </form> */}
     </div>
     </div>
   );

@@ -32,7 +32,7 @@ export default class AuthService {
   }
 
   async me() {
-    const token = this.tokenStorage.getToken();
+    const token = this.tokenStorage.getToken();    
     return await this.http.fetch('/auth/me', {
       method: 'GET',
       headers: { Authorization: `Bearer ${token}` },
