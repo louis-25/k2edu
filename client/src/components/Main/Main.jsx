@@ -7,6 +7,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Contact from '../pages/Contact/Contact';
 import NotFound from '../pages/NotFound/NotFound';
+import style from './Main.module.css';
 
 
 function Main({authService, loginState, setLogin}) {
@@ -26,27 +27,30 @@ function Main({authService, loginState, setLogin}) {
   }  
 
   return (
-    <div>
-      <Header authService={authService} loginState={loginState} setLogin={setLogin}></Header>
+    <div className={style.page}>
+      <div className={style.header}><Header authService={authService} loginState={loginState} setLogin={setLogin}></Header></div>
+        
         <Switch>
           <Route exact path="/">
-            <Visual></Visual>
-            {menu(1)}
+            <div>
+              <Visual></Visual>
+              {menu(1)}
+            </div>
           </Route>
           <Route exact path="/register">
-            <Register authService={authService}></Register>
+            <div><Register authService={authService}></Register></div>
           </Route>
           <Route exact path="/about">
-            <About></About>
+            <div><About></About></div>
           </Route>
           <Route exact path="/contact">
-            <Contact></Contact>
+            <div><Contact></Contact></div>
           </Route>      
           <Route path="*">
-              <NotFound></NotFound>
+              <div><NotFound></NotFound></div>
           </Route>
         </Switch>            
-      <Footer></Footer>            
+      <div className={style.footer}><Footer></Footer></div>
     </div>
   );
 }

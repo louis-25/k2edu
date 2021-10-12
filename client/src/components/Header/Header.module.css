@@ -208,9 +208,14 @@ header {
   }
 }
 
+.drawer {
+  display: none;
+}
+
 @media screen and (max-width:768px) {  
   .drawer {
     position: absolute;
+    display: block;
     right: 0;
     height: 100vh;
     width: 0px;
