@@ -46,7 +46,9 @@ function Login({authService, popup, setPopup, setLogin, openBar}) {
 
   const Register = () => {    
     setPopup(false)
-    openBar()
+    if(window.innerWidth < 768) {
+      openBar()
+    }
     history.push('/register');
   }
 
